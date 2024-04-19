@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login Form</title>
+	<style>
+		body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #ffffff; /* Changed background color to white */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for better depth */
+            width: 350px;
+        }
+
+        .form h2 {
+            color: #5e057e; /* Kept purple for headers for consistency */
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            color: #5e057e; /* Changed label color to purple */
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc; /* Added light border for better input visibility */
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #c299d0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #dab4e2;
+        }
+
+
+		.error-message, .logout-message {
+			background-color: #5e057e;
+			color: #fff;
+			padding: 10px;
+			border-radius: 3px;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="form-container">
+		<div th:if="${param.error}">
+			<div class="error-message">
+				<p>Invalid Username or Password!</p>
+			</div>
+		</div>
+		
+		<div th:if="${param.logout}">
+			<div class="logout-message">
+				<p>Logout Successful!</p>
+			</div>
+		</div>
+		<h2>Login</h2>
+		<form class="form" th:action="@{/login}" th:object="${user}" method="POST">
+			<div class="form-group">
+				<label for="username">Username:</label>
+				<input th:field="*{username}" type="text" id="username" name="username" required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input th:field="*{password}" type="password" id="password" name="password" required>
+			</div>
+			<div class="form-group">
+				<button type="submit">Login</button>
+			</div>
+		</form>
+		<span> Register here: <a th:href="@{/register}">Register</a></span>
+	</div>
+</body>
+
+</html>

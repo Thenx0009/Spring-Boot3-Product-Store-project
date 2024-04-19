@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .dashboard {
+            background-color: #5e057e;
+            color: #fff;
+            padding: 5px;
+            text-align: center;
+        }
+        .dashboard__title {
+            font-size: 28px;
+            margin-top: 5;
+        }
+        .dashboard__user {
+            margin-top: 20px;
+        }
+        .dashboard__user-name {
+            font-size: 22px;
+            color: #c299d0;
+        }
+        .btn, .logout-link {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 20px 10px 20px 0;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            color: white;
+        }
+        .btn {
+            background-color: #007bff; /* Blue color */
+            color: white; /* Ensure text is white */
+        }
+        .btn:hover {
+            background-color: #c299d0; /* Lighter purple */
+            cursor: pointer;
+        }
+        .logout-link {
+            background-color: #ff6347; /* Tomato red for logout */
+        }
+        .logout-link:hover {
+            background-color: #ff8577; /* Lighter red */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1 class="dashboard__title">Welcome to the Dashboard</h1>
+        <div class="dashboard__user">
+            <h2 th:text="${userdetail.fullname}" class="dashboard__user-name">User's Name</h2>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <a class="btn btn-primary" href="/products/list">View Products</a>
+        <span sec:authorize="isAuthenticated"><a class="logout-link" th:href="@{/logout}">Logout</a></span>
+    </div>
+</body>
+</html>
